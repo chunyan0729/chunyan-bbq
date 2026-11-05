@@ -1,16 +1,17 @@
 import { useEffect, useRef } from 'react'
+import { asset } from '@/asset'
 import { useApp } from '@/context'
 
 const FRAMES = [
-  '/assets/hero-bbq.jpg',
-  '/assets/gallery-grill.jpg',
-  '/assets/food-youbian.jpg',
-  '/assets/food-brisket.jpg',
-  '/assets/gallery-stall.jpg',
-  '/assets/food-lamb.jpg',
-  '/assets/food-wuhua.jpg',
-  '/assets/gallery-friends.jpg',
-  '/assets/food-beef.jpg',
+  asset('/assets/hero-bbq.jpg'),
+  asset('/assets/gallery-grill.jpg'),
+  asset('/assets/food-youbian.jpg'),
+  asset('/assets/food-brisket.jpg'),
+  asset('/assets/gallery-stall.jpg'),
+  asset('/assets/food-lamb.jpg'),
+  asset('/assets/food-wuhua.jpg'),
+  asset('/assets/gallery-friends.jpg'),
+  asset('/assets/food-beef.jpg'),
 ]
 
 const Z_GAP = 1100
@@ -283,7 +284,7 @@ export default function ScrollVideoHero() {
           </div>
           <div className="absolute bottom-6 right-6 text-right md:bottom-8 md:right-10">
             <img
-              src="/assets/logo-chunyan.jpg"
+              src={asset('/assets/logo-chunyan.jpg')}
               alt="纯言精选"
               className="h-14 w-14 rounded-sm border border-[#ff4d1a]/40 object-cover shadow-[0_0_30px_rgba(230,35,20,0.45)] md:h-16 md:w-16"
             />
