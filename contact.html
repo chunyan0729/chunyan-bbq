@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>联系 · 纯言精选</title>
+  <meta name="description" content="华丽的联系页。按钮会动，消息发不出去。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box}html,body{margin:0;background:#000;color:#fff;min-height:100%}
+    body{font-family:'Noto Sans SC','Inter Tight',sans-serif;display:grid;grid-template-rows:auto 1fr}*{letter-spacing:-.02em}a{color:inherit;text-decoration:none}
+    .grain{position:fixed;inset:-50vh -50vw;width:200vw;height:200vh;z-index:6;pointer-events:none;opacity:.1;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.5' intercept='-1.48'/%3E%3CfeFuncG type='linear' slope='3.5' intercept='-1.48'/%3E%3CfeFuncB type='linear' slope='3.5' intercept='-1.48'/%3E%3CfeFuncA type='linear' slope='0' intercept='1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;animation:g .5s steps(1) infinite}
+    @keyframes g{0%,100%{transform:translate(0,0)}50%{transform:translate(-4%,6%)}}
+    .top{padding:24px;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.1em;text-transform:uppercase;mix-blend-mode:difference;position:relative;z-index:2}
+    .main{position:relative;z-index:2;padding:8vh 24px 12vh;display:grid;gap:8vh;align-content:center;mix-blend-mode:difference}
+    h1{margin:0;font-size:clamp(48px,11vw,130px);line-height:.9;letter-spacing:-.045em;max-width:10ch}
+    .fake{display:grid;gap:18px;max-width:520px}
+    label{display:grid;gap:8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.7}
+    input,textarea{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.35);color:#fff;font:inherit;font-size:18px;padding:10px 0;outline:none;letter-spacing:-.02em;resize:none}
+    input:focus,textarea:focus{border-bottom-color:#fff}
+    .btn{margin-top:12px;justify-self:start;appearance:none;border:1px solid #fff;background:transparent;color:#fff;font:inherit;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:16px 28px;cursor:pointer;position:relative;overflow:hidden;transition:color .25s}
+    .btn::before{content:'';position:absolute;inset:0;background:#fff;transform:translateY(101%);transition:transform .45s cubic-bezier(.16,1,.3,1);z-index:-1}
+    .btn:hover{color:#000}.btn:hover::before{transform:translateY(0)}
+    .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);z-index:20;padding:14px 18px;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.7);backdrop-filter:blur(8px);font-size:13px;opacity:0;pointer-events:none;transition:opacity .35s,transform .35s;mix-blend-mode:normal}
+    .toast.on{opacity:1;transform:translate(-50%,0)}
+    .meta{display:flex;flex-wrap:wrap;gap:clamp(24px,6vw,64px);font-size:13px;line-height:1.5;opacity:.7}
+    .meta b{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.55;margin-bottom:6px;font-weight:500}
+    .orb{position:fixed;width:50vmax;height:50vmax;border-radius:50%;right:-10vmax;bottom:-10vmax;background:radial-gradient(circle,rgba(255,120,40,.28),transparent 65%);filter:blur(20px);pointer-events:none;animation:orb 8s ease-in-out infinite alternate}
+    @keyframes orb{from{transform:translate(0,0) scale(1)}to{transform:translate(-8%,-6%) scale(1.15)}}
+  </style>
+</head>
+<body>
+  <div class="orb" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="top"><a href="index.html">← 纯言精选</a><a href="dishes.html">菜品</a></header>
+  <main class="main">
+    <h1>来一串</h1>
+    <form class="fake" id="form" autocomplete="off">
+      <label>名字（可假）<input name="name" placeholder="夜行者"></label>
+      <label>联络方式（不会收到）<input name="contact" placeholder="smoke@signals.void"></label>
+      <label>想说的（纯装饰）<textarea name="msg" rows="3" placeholder="我只是来看动画的"></textarea></label>
+      <button class="btn" type="submit">提交到虚空</button>
+    </form>
+    <div class="meta">
+      <div><b>地址</b>某条夜街 · 地图不可用</div>
+      <div><b>时段</b>末班车后 — 第一辆货车前</div>
+      <div><b>电话</b>+86 · 000 · LOOKS-ONLY</div>
+    </div>
+  </main>
+  <div class="toast" id="toast">已发送到虚空。没有后端，但有动效。</div>
+  <script>
+    const form=document.getElementById('form');
+    const toast=document.getElementById('toast');
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      toast.classList.add('on');
+      setTimeout(()=>toast.classList.remove('on'),2200);
+      form.reset();
+    });
+    if(window.gsap&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+      gsap.from('h1,.fake label,.btn,.meta > div',{opacity:0,y:22,filter:'blur(8px)',duration:.9,stagger:.06,ease:'expo.out'});
+    }
+  </script>
+</body>
+</html>

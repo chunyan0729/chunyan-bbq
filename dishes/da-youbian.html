@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>东北大油边 · 纯言精选</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box}html,body{margin:0;background:#000;color:#fff}body{font-family:'Noto Sans SC','Inter Tight',sans-serif}*{letter-spacing:-.02em}a{color:inherit;text-decoration:none}
+    :root{--p:0}
+    .run{height:240vh}
+    .stage{position:fixed;inset:0;background:#000;overflow:hidden}
+    .blob{position:absolute;width:70vmax;height:70vmax;border-radius:40% 60% 55% 45%;filter:blur(40px);opacity:.45;left:50%;top:50%;transform:translate(-50%,-50%) scale(calc(.7 + var(--p)*.5)) rotate(calc(var(--p)*40deg));
+      background:conic-gradient(from 90deg,rgba(255,180,80,.0),rgba(255,120,30,.55),rgba(255,40,20,.25),rgba(255,180,80,0))}
+    .ring{position:absolute;inset:12%;border:1px solid rgba(255,255,255,.15);border-radius:50%;transform:scale(calc(1.2 - var(--p)*.35)) rotate(calc(var(--p)*-25deg))}
+    .ring:nth-child(3){inset:22%;opacity:.5;transform:scale(calc(.9 + var(--p)*.4)) rotate(calc(var(--p)*18deg))}
+    .grain{position:fixed;inset:-40vh -40vw;width:180vw;height:180vh;z-index:6;pointer-events:none;opacity:.1;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.5' intercept='-1.48'/%3E%3CfeFuncG type='linear' slope='3.5' intercept='-1.48'/%3E%3CfeFuncB type='linear' slope='3.5' intercept='-1.48'/%3E%3CfeFuncA type='linear' slope='0' intercept='1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;animation:g .45s steps(1) infinite}
+    @keyframes g{0%,100%{transform:translate(0,0)}50%{transform:translate(5%,-4%)}}
+    .ui{position:fixed;inset:0;z-index:10;padding:24px;display:flex;flex-direction:column;justify-content:space-between;mix-blend-mode:difference;pointer-events:none}
+    .ui a{pointer-events:auto}.top{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+    h1{margin:0;font-size:clamp(48px,10vw,130px);line-height:.9;letter-spacing:-.04em;max-width:10ch}
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:720px}
+    .cols p{margin:0;font-size:14px;line-height:1.5;opacity:calc(.2 + min(var(--p)*1.4,1)*.8)}
+    .cols p:last-child{text-align:right}
+    .stamp{position:fixed;left:50%;top:50%;z-index:8;transform:translate(-50%,-50%) rotate(-12deg) scale(calc(.8 + var(--p)*.4));
+      border:2px solid rgba(255,255,255,calc(.15 + var(--p)*.5));padding:18px 28px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;mix-blend-mode:difference;pointer-events:none;white-space:nowrap}
+    @media(max-width:767px){.cols{grid-template-columns:1fr}.cols p:last-child{text-align:left}}
+  </style>
+</head>
+<body>
+  <div class="stage" aria-hidden="true">
+    <div class="blob"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="stamp">THICK CUT · NO RECIPE</div>
+  <div class="ui">
+    <div class="top"><a href="../index.html">← 纯言精选</a><a href="../dishes.html">菜品墙</a></div>
+    <h1>东北大油边</h1>
+    <div class="cols">
+      <p>据说要厚。据说要焦。据说要嫩。这一段可以换成任何形容词，页面不会抗议。</p>
+      <p>滚动只为了让光斑旋转。你没有获得知识，但获得了帧率。</p>
+    </div>
+  </div>
+  <div class="run" aria-hidden="true"></div>
+  <script>
+    const r=document.documentElement;
+    const tick=()=>{r.style.setProperty('--p',(scrollY/Math.max(document.documentElement.scrollHeight-innerHeight,1)).toFixed(4));};
+    addEventListener('scroll',tick,{passive:true});tick();
+    if(window.gsap&&!matchMedia('(prefers-reduced-motion:reduce)').matches) gsap.from('h1,.cols p,.stamp',{opacity:0,y:24,filter:'blur(10px)',stagger:.1,duration:1,ease:'expo.out'});
+  </script>
+</body>
+</html>

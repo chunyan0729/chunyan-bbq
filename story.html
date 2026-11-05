@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>故事 · 纯言精选</title>
+  <meta name="description" content="一段很好看、完全不可信的品牌神话。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}html,body{margin:0;background:#000;color:#fff}
+    body{font-family:'Noto Sans SC','Inter Tight',sans-serif}*{letter-spacing:-.02em}a{color:inherit;text-decoration:none}
+    .grain{position:fixed;inset:-50vh -50vw;width:200vw;height:200vh;z-index:6;pointer-events:none;opacity:.1;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.5' intercept='-1.48'/%3E%3CfeFuncG type='linear' slope='3.5' intercept='-1.48'/%3E%3CfeFuncB type='linear' slope='3.5' intercept='-1.48'/%3E%3CfeFuncA type='linear' slope='0' intercept='1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;animation:g .5s steps(1) infinite}
+    @keyframes g{0%,100%{transform:translate(0,0)}50%{transform:translate(4%,-5%)}}
+    .top{position:fixed;inset:0 0 auto;z-index:10;padding:24px;display:flex;justify-content:space-between;mix-blend-mode:difference;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+    .chapters{position:relative;z-index:2}
+    .ch{min-height:100vh;display:grid;align-content:center;padding:20vh 24px;mix-blend-mode:difference;border-bottom:1px solid rgba(255,255,255,.08)}
+    .ch .idx{font-family:'Inter Tight',sans-serif;font-size:11px;letter-spacing:.2em;opacity:.5;margin-bottom:1rem}
+    .ch h2{margin:0 0 1.2rem;font-size:clamp(40px,8vw,96px);line-height:.92;letter-spacing:-.04em;max-width:12ch}
+    .ch p{margin:0;max-width:36ch;font-size:15px;line-height:1.55;opacity:.78}
+    .year{position:fixed;right:24px;bottom:24px;z-index:10;font-size:clamp(64px,18vw,200px);font-weight:700;letter-spacing:-.06em;opacity:.08;pointer-events:none;mix-blend-mode:difference;line-height:1}
+    .bg{position:fixed;inset:0;z-index:0;background:
+      radial-gradient(circle at 10% 20%, rgba(255,100,40,.16), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(255,255,255,.05), transparent 35%),#000}
+  </style>
+</head>
+<body>
+  <div class="bg"></div><div class="grain"></div>
+  <div class="year" id="year">2019</div>
+  <header class="top"><a href="index.html">← 纯言精选</a><a href="dishes.html">菜品</a></header>
+  <main class="chapters">
+    <section class="ch" data-y="2019">
+      <div class="idx">ACT I · ORIGIN MYTH</div>
+      <h2>先有炭火，后有借口</h2>
+      <p>据说有人在末班车后点燃第一炉。据说有十二个人。据说这些数字写进网页只是为了好看。</p>
+    </section>
+    <section class="ch" data-y="2021">
+      <div class="idx">ACT II · THE LOOP</div>
+      <h2>同一条街，换三种滤镜</h2>
+      <p>我们没有扩张，只是把字号做大。品牌故事的核心资产是 kerning。</p>
+    </section>
+    <section class="ch" data-y="2024">
+      <div class="idx">ACT III · NOCTURNE</div>
+      <h2>中看不中用正式立项</h2>
+      <p>实用功能全部砍掉：不能点餐，不能导航，不能加盟。留下滚动、模糊、胶片颗粒，以及你此刻的耐心。</p>
+    </section>
+    <section class="ch" data-y="2026">
+      <div class="idx">ACT IV · NOW</div>
+      <h2>你还在往下滚</h2>
+      <p>很好。说明视觉预算没有白花。请前往联系页，那里同样没有表单。</p>
+    </section>
+  </main>
+  <script>
+    const year=document.getElementById('year');
+    const chs=[...document.querySelectorAll('.ch')];
+    const io=new IntersectionObserver((ents)=>{
+      ents.forEach(e=>{if(e.isIntersecting) year.textContent=e.target.dataset.y});
+    },{threshold:.55});
+    chs.forEach(c=>io.observe(c));
+    if(window.gsap&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+      chs.forEach(ch=>{
+        gsap.from(ch.querySelectorAll('.idx,h2,p'),{scrollTrigger:null,opacity:0,y:30,filter:'blur(8px)',duration:1,stagger:.08,ease:'expo.out',
+          scrollTrigger:undefined});
+      });
+      // simple per-section reveal without ScrollTrigger dependency issues
+      const io2=new IntersectionObserver((ents)=>{
+        ents.forEach(e=>{
+          if(!e.isIntersecting||e.target.dataset.in) return;
+          e.target.dataset.in='1';
+          gsap.from(e.target.querySelectorAll('.idx,h2,p'),{opacity:0,y:28,filter:'blur(8px)',duration:.9,stagger:.07,ease:'expo.out'});
+        });
+      },{threshold:.35});
+      chs.forEach(c=>io2.observe(c));
+    }
+  </script>
+</body>
+</html>
