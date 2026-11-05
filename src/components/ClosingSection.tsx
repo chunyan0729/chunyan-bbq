@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { asset } from '@/asset'
 import { useApp } from '@/context'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
 
@@ -13,7 +14,7 @@ export default function ClosingSection() {
       <div
         className="pointer-events-none absolute inset-0 opacity-40"
         style={{
-          backgroundImage: 'url(/assets/hero-bbq.jpg)',
+          backgroundImage: `url(${asset('/assets/hero-bbq.jpg')})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'brightness(0.35) saturate(1.2)',

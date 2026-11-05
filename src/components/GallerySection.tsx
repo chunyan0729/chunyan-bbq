@@ -1,16 +1,17 @@
 import { useRef } from 'react'
+import { asset } from '@/asset'
 import { useApp } from '@/context'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
 
 const shots = [
-  { src: '/assets/gallery-stall.jpg', zh: '夜市炉火', en: 'Night stall' },
-  { src: '/assets/gallery-grill.jpg', zh: '翻签瞬间', en: 'Flip the stick' },
-  { src: '/assets/food-youbian.jpg', zh: '大油边', en: 'Fat edge' },
-  { src: '/assets/gallery-friends.jpg', zh: '兄弟局', en: 'Brother night' },
-  { src: '/assets/food-brisket.jpg', zh: '牛胸口', en: 'Brisket' },
-  { src: '/assets/food-lamb.jpg', zh: '羊肉筋', en: 'Lamb tendon' },
-  { src: '/assets/hero-bbq.jpg', zh: '炭火红', en: 'Ember red' },
-  { src: '/assets/food-wuhua.jpg', zh: '猪五花', en: 'Pork belly' },
+  { src: asset('/assets/gallery-stall.jpg'), zh: '夜市炉火', en: 'Night stall' },
+  { src: asset('/assets/gallery-grill.jpg'), zh: '翻签瞬间', en: 'Flip the stick' },
+  { src: asset('/assets/food-youbian.jpg'), zh: '大油边', en: 'Fat edge' },
+  { src: asset('/assets/gallery-friends.jpg'), zh: '兄弟局', en: 'Brother night' },
+  { src: asset('/assets/food-brisket.jpg'), zh: '牛胸口', en: 'Brisket' },
+  { src: asset('/assets/food-lamb.jpg'), zh: '羊肉筋', en: 'Lamb tendon' },
+  { src: asset('/assets/hero-bbq.jpg'), zh: '炭火红', en: 'Ember red' },
+  { src: asset('/assets/food-wuhua.jpg'), zh: '猪五花', en: 'Pork belly' },
 ]
 
 export default function GallerySection() {

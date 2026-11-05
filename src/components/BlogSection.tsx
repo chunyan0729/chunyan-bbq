@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { asset } from '@/asset'
 import { posts } from '@/i18n'
 import { useApp } from '@/context'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
@@ -17,7 +18,7 @@ export default function BlogSection() {
       <div
         className="pointer-events-none absolute inset-y-0 right-0 w-1/2 opacity-30"
         style={{
-          backgroundImage: 'url(/assets/gallery-grill.jpg)',
+          backgroundImage: `url(${asset('/assets/gallery-grill.jpg')})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           maskImage: 'linear-gradient(90deg, transparent, black)',

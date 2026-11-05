@@ -1,3 +1,5 @@
+import { asset } from '@/asset'
+
 export type Lang = 'zh' | 'en'
 
 export const copy = {
@@ -143,7 +145,7 @@ export const menuItems = [
     zh: { name: '东北大油边', desc: '护心肉厚切，焦边带油香，越嚼越香' },
     en: { name: 'Northeast Fat Edge', desc: 'Thick heart cut, crisp oily rim, deeper with every chew' },
     price: 48,
-    img: '/assets/food-youbian.jpg',
+    img: asset('/assets/food-youbian.jpg'),
     tag: '签名',
   },
   {
@@ -151,7 +153,7 @@ export const menuItems = [
     zh: { name: '炭烤大筋皮', desc: '软糯弹牙，炭火逼出胶质香' },
     en: { name: 'Charred Tendon Skin', desc: 'Soft-chewy, collagen perfume from the coals' },
     price: 42,
-    img: '/assets/food-jincui.jpg',
+    img: asset('/assets/food-jincui.jpg'),
     tag: '硬菜',
   },
   {
@@ -159,7 +161,7 @@ export const menuItems = [
     zh: { name: '焦香牛胸口', desc: '外脆内嫩，咬开有奶香' },
     en: { name: 'Crisp Beef Brisket', desc: 'Crackly outside, tender inside, milky fat bloom' },
     price: 52,
-    img: '/assets/food-brisket.jpg',
+    img: asset('/assets/food-brisket.jpg'),
     tag: '招牌',
   },
   {
@@ -167,7 +169,7 @@ export const menuItems = [
     zh: { name: '蒜香猪五花', desc: '肥瘦三层，焦边蘸干料' },
     en: { name: 'Garlic Pork Belly', desc: 'Three-layer fat & lean, char edge into dry rub' },
     price: 38,
-    img: '/assets/food-wuhua.jpg',
+    img: asset('/assets/food-wuhua.jpg'),
     tag: '经典',
   },
   {
@@ -175,7 +177,7 @@ export const menuItems = [
     zh: { name: '大串羊肉筋', desc: '筋连着肉，越烤越黏嘴' },
     en: { name: 'Lamb Tendon Skewer', desc: 'Tendon clinging to meat—stickier as it cooks' },
     price: 46,
-    img: '/assets/food-lamb.jpg',
+    img: asset('/assets/food-lamb.jpg'),
     tag: '必点',
   },
   {
@@ -183,7 +185,7 @@ export const menuItems = [
     zh: { name: '老式牛肉大串', desc: '粗签大块，纯肉焦香' },
     en: { name: 'Old-School Beef Stick', desc: 'Thick skewer, big cubes, pure meat char' },
     price: 44,
-    img: '/assets/food-beef.jpg',
+    img: asset('/assets/food-beef.jpg'),
     tag: '硬核',
   },
   {
@@ -191,7 +193,7 @@ export const menuItems = [
     zh: { name: '烤实蛋', desc: '东北特色，Q弹有嚼劲' },
     en: { name: 'Grilled Solid Egg', desc: 'Northeast classic—bouncy, chewy bite' },
     price: 22,
-    img: '/assets/food-egg.jpg',
+    img: asset('/assets/food-egg.jpg'),
     tag: '配菜',
   },
   {
@@ -199,7 +201,7 @@ export const menuItems = [
     zh: { name: '炭烤干豆腐卷', desc: '卷葱卷香菜，焦香解腻' },
     en: { name: 'Dry Tofu Rolls', desc: 'Scallion & cilantro—charred, cuts the richness' },
     price: 18,
-    img: '/assets/food-tofu.jpg',
+    img: asset('/assets/food-tofu.jpg'),
     tag: '配菜',
   },
   {
@@ -207,7 +209,7 @@ export const menuItems = [
     zh: { name: '烤酸菜', desc: '酸爽脆嫩，配肉串绝了' },
     en: { name: 'Grilled Sour Cabbage', desc: 'Bright, crisp—perfect beside meat' },
     price: 16,
-    img: '/assets/food-suan.jpg',
+    img: asset('/assets/food-suan.jpg'),
     tag: '配菜',
   },
   {
@@ -215,7 +217,7 @@ export const menuItems = [
     zh: { name: '烤馒头片', desc: '刷油撒糖，焦脆收尾' },
     en: { name: 'Toasted Mantou', desc: 'Oil & sugar—crisp sweet finish' },
     price: 12,
-    img: '/assets/food-mantou.jpg',
+    img: asset('/assets/food-mantou.jpg'),
     tag: '收尾',
   },
 ] as const
