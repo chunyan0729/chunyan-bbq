@@ -1,0 +1,88 @@
+:root {
+  --ink: #e8dfd0;
+  --muted: #9a9080;
+  --accent: #d9772a;
+  --gold: #e2b84a;
+  --danger: #c44b3a;
+  --ok: #7a9e5a;
+  --panel: rgba(14, 16, 20, 0.92);
+  --line: rgba(196, 165, 116, 0.3);
+  font-family: "IBM Plex Sans", sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #0e1014; color: var(--ink); }
+#app { position: relative; width: 100vw; height: 100vh; }
+#c { display: block; width: 100%; height: 100%; cursor: crosshair; }
+
+#crosshair {
+  position: absolute; left: 50%; top: 50%; width: 14px; height: 14px;
+  margin: -7px 0 0 -7px; border: 2px solid rgba(232,223,208,0.75);
+  border-radius: 50%; pointer-events: none; z-index: 2;
+}
+#crosshair.hidden { display: none; }
+#crosshair::before, #crosshair::after {
+  content: ""; position: absolute; background: rgba(217,119,42,0.9);
+}
+#crosshair::before { left: 5px; top: -4px; width: 2px; height: 20px; }
+#crosshair::after { left: -4px; top: 5px; width: 20px; height: 2px; }
+
+#hud {
+  position: absolute; inset: 0; display: flex; justify-content: space-between;
+  padding: 1rem 1.25rem; pointer-events: none; z-index: 3;
+  font-family: "Barlow Condensed", sans-serif; letter-spacing: 0.05em;
+}
+#hud.hidden { display: none; }
+.hud-left, .hud-right, .hud-center { display: flex; flex-direction: column; gap: 0.15rem; }
+.brand { font-size: 0.75rem; color: var(--accent); font-weight: 800; }
+#weapon { font-size: 1.4rem; font-weight: 800; }
+#dmg { color: #c4a574; font-size: 0.9rem; }
+.hp-wrap { width: min(280px, 36vw); height: 8px; background: #0006; border: 1px solid var(--line); }
+#hp { height: 100%; width: 100%; background: linear-gradient(90deg, #6b7a4e, #c4a574); }
+#obj { margin-top: 0.4rem; font-family: "IBM Plex Sans", sans-serif; font-size: 0.85rem; color: var(--muted); letter-spacing: 0; }
+.hint { margin-top: 0.35rem; color: var(--gold); font-weight: 800; animation: pulse 1.1s infinite; }
+.hint.hidden { display: none; }
+.hint kbd { border: 1px solid rgba(226,184,74,0.45); padding: 0 0.3rem; font-family: "IBM Plex Sans", sans-serif; font-size: 0.8rem; }
+@keyframes pulse { 50% { opacity: 0.5; } }
+#time { font-size: 1.5rem; font-weight: 800; text-align: right; }
+.muted { font-size: 0.7rem; color: var(--muted); text-align: right; }
+.gold { display: flex; align-items: center; justify-content: flex-end; gap: 0.35rem; font-size: 1.55rem; font-weight: 800; color: var(--gold); margin-top: 0.35rem; }
+.coin { width: 0.8rem; height: 0.8rem; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #ffe9a0, var(--gold)); display: inline-block; }
+.kills { text-align: right; color: var(--muted); font-family: "IBM Plex Sans", sans-serif; font-size: 0.85rem; letter-spacing: 0; margin-top: 0.25rem; }
+
+.overlay, .shop {
+  position: absolute; inset: 0; display: grid; place-items: center; z-index: 5;
+  background: rgba(8,10,14,0.72); backdrop-filter: blur(3px);
+}
+.overlay.hidden, .shop.hidden { display: none; }
+.panel {
+  width: min(520px, 92%); max-height: 90%; overflow: auto;
+  background: var(--panel); border: 1px solid var(--line); padding: 1.6rem 1.4rem;
+}
+.eyebrow { font-family: "Barlow Condensed", sans-serif; font-weight: 800; letter-spacing: 0.2em; font-size: 0.8rem; color: var(--accent); margin-bottom: 0.5rem; }
+.eyebrow.ok { color: var(--ok); }
+.eyebrow.bad { color: var(--danger); }
+h1 { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: clamp(2.8rem, 8vw, 4.6rem); line-height: 0.9; margin-bottom: 0.7rem; }
+h2 { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 2rem; margin-bottom: 0.5rem; }
+.tag, .blurb { color: var(--muted); margin-bottom: 1rem; line-height: 1.4; }
+.btn {
+  appearance: none; border: 1px solid #c4a574; background: transparent; color: var(--ink);
+  font-family: "Barlow Condensed", sans-serif; font-weight: 800; letter-spacing: 0.14em;
+  font-size: 1.05rem; padding: 0.7rem 1.2rem; cursor: pointer;
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #1a1208; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn.buy { border-color: var(--gold); color: var(--gold); }
+.btn.owned { border-color: var(--ok); color: var(--ok); }
+.controls { list-style: none; margin-top: 1.2rem; display: grid; gap: 0.4rem; color: var(--muted); font-size: 0.9rem; }
+kbd { display: inline-block; min-width: 1.3rem; padding: 0.1rem 0.3rem; margin-right: 0.1rem; border: 1px solid var(--line); color: #c4a574; font-size: 0.78rem; text-align: center; }
+
+.shop .panel { width: min(600px, 94%); }
+.shop header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+#shop-list { display: grid; gap: 0.55rem; margin-bottom: 1rem; }
+.shop-item {
+  display: grid; grid-template-columns: 1fr auto; gap: 0.6rem; align-items: center;
+  border: 1px solid var(--line); padding: 0.7rem 0.8rem; background: #ffffff06;
+}
+.shop-item h3 { font-family: "Barlow Condensed", sans-serif; font-weight: 800; letter-spacing: 0.05em; }
+.shop-item .meta { color: var(--muted); font-size: 0.8rem; margin-top: 0.15rem; }
+.shop-item .price { color: var(--gold); font-family: "Barlow Condensed", sans-serif; font-weight: 800; text-align: right; margin-bottom: 0.3rem; }

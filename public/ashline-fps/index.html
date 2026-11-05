@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASHLINE RAID — FPS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="c"></canvas>
+    <div id="crosshair" class="hidden"></div>
+
+    <div id="hud" class="hidden">
+      <div class="hud-left">
+        <div class="brand">ASHLINE FPS</div>
+        <div id="weapon">SIDEARM</div>
+        <div id="dmg">DMG 14</div>
+      </div>
+      <div class="hud-center">
+        <div class="hp-wrap"><div id="hp"></div></div>
+        <div id="obj">Endless — survive 30:00</div>
+        <div id="shop-hint" class="hint hidden">Near Armory — press <kbd>F</kbd></div>
+      </div>
+      <div class="hud-right">
+        <div id="time">30:00</div>
+        <div class="muted">TIME LEFT</div>
+        <div class="gold"><span class="coin"></span><span id="gold">0</span></div>
+        <div class="muted">GOLD</div>
+        <div id="kills" class="kills">0 kills</div>
+      </div>
+    </div>
+
+    <div id="shop" class="shop hidden">
+      <div class="panel">
+        <header>
+          <div>
+            <p class="eyebrow">FIELD ARMORY</p>
+            <h2>BUY GUNS</h2>
+          </div>
+          <div class="gold"><span class="coin"></span><span id="shop-gold">0</span></div>
+        </header>
+        <p class="blurb">1 kill = 1 gold. First upgrade costs 10.</p>
+        <div id="shop-list"></div>
+        <button type="button" id="btn-shop-close" class="btn">CLOSE (F / Esc)</button>
+      </div>
+    </div>
+
+    <div id="overlay" class="overlay">
+      <div class="panel" id="menu">
+        <p class="eyebrow">FAST FPS BUILD</p>
+        <h1>ASHLINE<br />RAID</h1>
+        <p class="tag">Low-poly undead FPS. Farm gold, buy guns, survive 30 minutes.</p>
+        <button type="button" id="btn-start" class="btn primary">CLICK TO DEPLOY</button>
+        <ul class="controls">
+          <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Move · <kbd>Mouse</kbd> Look</li>
+          <li><kbd>Click</kbd> Fire · <kbd>Space</kbd> Jump · <kbd>F</kbd> Shop</li>
+          <li>Pointer lock required — click canvas after deploy</li>
+        </ul>
+      </div>
+      <div class="panel hidden" id="win">
+        <p class="eyebrow ok">SESSION COMPLETE</p>
+        <h2>30:00 SURVIVED</h2>
+        <p id="win-stats"></p>
+        <button type="button" id="btn-win" class="btn primary">RUN AGAIN</button>
+      </div>
+      <div class="panel hidden" id="lose">
+        <p class="eyebrow bad">OPERATOR DOWN</p>
+        <h2>OVERRUN</h2>
+        <p id="lose-stats"></p>
+        <button type="button" id="btn-lose" class="btn primary">RETRY</button>
+      </div>
+    </div>
+  </div>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
